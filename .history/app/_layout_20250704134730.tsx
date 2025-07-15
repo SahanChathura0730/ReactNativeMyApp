@@ -8,7 +8,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 const RootLayout = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }} edges={["top", "bottom"]}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "blue" }} edges={["top", "bottom"]}>
         {/* ✅ Always-visible StatusBar */}
         <StatusBar
           barStyle="dark-content" // or "light-content"
