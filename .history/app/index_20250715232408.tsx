@@ -6,7 +6,7 @@ import "../global.css"
 const index = () => {
   return (
     <View className="flex-1 bg-gray-50">
-      <Header Center={"Home"}/>
+      <Header/>
       <View className="flex-1 items-center justify-center">
         <Text className="text-xl font-bold">Hello from Home</Text>
       </View>

@@ -21,7 +21,7 @@ const Header = ({ Center, Right }: IHeader) => {
 
 
       {/* Center content or empty */}
-      {Center ? <Text className='text-2xl font-bold'>{Center}</Text> : <View />}
+      {Center ? <Text className='text-4xl font-semibold'>{Center}</Text> : <View />}
 
       {/* Right icons */}
       <View style={{ flexDirection: 'row', gap: 20 }}>
@@ -37,6 +37,10 @@ const Header = ({ Center, Right }: IHeader) => {
             </TouchableOpacity>
             <TouchableOpacity>
               <Ionicons name="chatbubble-ellipses-outline" size={24} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              {/* ChatGPT doesn't have an Ionicon, so you might want to use a custom icon or image here */}
+              <Ionicons name="rocket-outline" size={24} /> 
             </TouchableOpacity>
           </>
         )}

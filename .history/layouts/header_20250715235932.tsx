@@ -16,7 +16,7 @@ const Header = ({ Center, Right }: IHeader) => {
     >
       {/* Left side menu icon */}
       <TouchableOpacity>
-        <Ionicons name="menu" size={24} />
+        <Ionicons name="menu" size={28} />
       </TouchableOpacity>
 
 
@@ -37,6 +37,10 @@ const Header = ({ Center, Right }: IHeader) => {
             </TouchableOpacity>
             <TouchableOpacity>
               <Ionicons name="chatbubble-ellipses-outline" size={24} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              {/* ChatGPT doesn't have an Ionicon, so you might want to use a custom icon or image here */}
+              <Ionicons name="rocket-outline" size={24} /> 
             </TouchableOpacity>
           </>
         )}
