@@ -6,17 +6,16 @@ const subjects = [
   {
     name: "Mathematics",
     progress: 75,
-    image: require('../assets/images/react-logo.png'),
-    colors: ['#FF6B6B', '#FFD93D'] as const,
+    image: require('../assets/images/react-logo.pngr'),
+    colors: ['#FF6B6B', '#FFD93D'],
   },
   {
     name: "Science",
     progress: 50,
     image: require('../assets/images/react-logo.png'),
-    colors: ['#6C63FF', '#9D79FF'] as const,
+    colors: ['#6C63FF', '#9D79FF'],
   },
 ];
-
 
 const Subjects = () => {
   return (

@@ -25,7 +25,7 @@ const Profile = () => {
       <View className="items-center pt-10 px-6">
         {/* Profile Picture */}
         <Image
-          source={require('../assets/images/react-logo.png')}
+          source={require('../assets/images/profile.png')}
           style={{ width: 120, height: 120, borderRadius: 60 }}
         />
 
