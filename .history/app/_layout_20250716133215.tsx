@@ -1,6 +1,6 @@
 // app/_layout.tsx
-import DrawerNavigator from "@/layouts/DrawerNavigator";
 import Footer from "@/layouts/footer";
+import { Drawer } from "expo-router/drawer";
 import React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -17,8 +17,16 @@ const RootLayout = () => {
           translucent={false}
         />
 
-        <DrawerNavigator />
-
+        <Drawer
+          screenOptions={{
+            headerShown: false, // ✅ hide default drawer header
+          }}
+        >          
+          <Drawer.Screen name="index" options={{ title: "Home" }} />
+          <Drawer.Screen name="profile" options={{ title: "Profile" }} />
+          <Drawer.Screen name="subjects" options={{ title: "Subjects" }} />
+          <Drawer.Screen name="classes" options={{ title: "Classes" }} />
+        </Drawer>
 
         <Footer />
       </SafeAreaView>

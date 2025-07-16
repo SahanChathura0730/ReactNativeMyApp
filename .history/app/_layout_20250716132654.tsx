@@ -1,10 +1,9 @@
 // app/_layout.tsx
-import DrawerNavigator from "@/layouts/DrawerNavigator";
 import Footer from "@/layouts/footer";
+import { Slot } from "expo-router";
 import React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
 
 const RootLayout = () => {
   return (
@@ -17,8 +16,7 @@ const RootLayout = () => {
           translucent={false}
         />
 
-        <DrawerNavigator />
-
+        <Slot />
 
         <Footer />
       </SafeAreaView>
