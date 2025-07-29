@@ -1,25 +1,15 @@
 import Button from "@/components/button";
 import InputField from "@/components/input";
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from "react";
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
-import { RootStackParamList } from "../navigation/types"; // We'll define this type
-
-// Define navigation type for LoginScreen
-type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 const LoginScreen = () => {
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-
-  const handleLogin = () => {
-    navigation.replace("Home"); // Example: Navigate to Home after login
-  };
+  const handleLogin = () => {};
 
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : "height"} // Moves UI when keyboard appears
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <View className="flex-1 bg-white">
@@ -40,23 +30,21 @@ const LoginScreen = () => {
             <View className="bg-white p-6 rounded-tr-[50px]">
               <Text className="pt-12 text-4xl font-slabMedium">Login</Text>
               <View>
-                <InputField label="Email or Username" placeholder="Enter your email or username" />
-                <InputField label="Password" placeholder="Enter your password" secureTextEntry />
+                <InputField
+                  label="Email or Username"
+                  placeholder="Enter your email or username"
+                />
+                <InputField
+                  label="Password"
+                  placeholder="Enter your password"
+                  secureTextEntry
+                />
               </View>
               <View className="flex-row justify-between">
-                <Text
-                  className="text-center mt-4 text-gray-500"
-                  onPress={() => navigation.navigate('ForgotPassword')}
-                >
-                  Forgot password?
-                </Text>
-                <Text
-                  className="text-center mt-4 text-gray-500"
-                  onPress={() => navigation.navigate('Register')}
-                >
-                  Create an account
-                </Text>
+                <Text className="text-center mt-4 text-gray-500">Forgot password?  </Text>
+                <Text className="text-center mt-4 text-gray-500">Create an account </Text>
               </View>
+
               <View className="m-8">
                 <Button title="Sign In" onPress={handleLogin} />
               </View>
