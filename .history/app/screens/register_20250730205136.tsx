@@ -8,7 +8,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
-import { Roles } from "../../constant/enum";
+import { Roles } from "../../constant/enum"; // ✅ Import Roles enum
 import { RootStackParamList } from "../navigation/types";
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Register">;
@@ -57,12 +57,10 @@ const RegisterScreen = () => {
 ];
 
   const handleRegister = async () => {
-    console.log("hiiii")
     if (!validateForm()) return;
-    console.log(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`)
 
     try {
-      const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`, {
+      const response = await axios.post(`${process.env.API_URL}/auth/register`, {
         name,
         username,
         email,
@@ -146,7 +144,7 @@ const RegisterScreen = () => {
               {errors.role && <Text className="text-red-500 text-sm">{errors.role}</Text>}
 
               {/* DOB */}
-              <Text className="text-primary text-lg  mt-6 mb-1 font-slabBold">Date of Birth</Text>
+              <Text className="text-primary text-lg mb-1 font-slabBold">Date of Birth</Text>
               <Text className="border border-gray-300 rounded-lg p-3 text-gray-600" onPress={() => setShowDatePicker(true)}>
                 {dob ? dob.toDateString() : "Select your date of birth"}
               </Text>

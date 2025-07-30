@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
-import { RootStackParamList } from "../navigation/types"; // ✅ Import types
+import { RootStackParamList } from "../navigation/_types"; // ✅ Import types
 
 type ForgotPasswordNavigationProp = NativeStackNavigationProp<RootStackParamList, "ForgotPassword">;
 

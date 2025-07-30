@@ -57,12 +57,10 @@ const RegisterScreen = () => {
 ];
 
   const handleRegister = async () => {
-    console.log("hiiii")
     if (!validateForm()) return;
-    console.log(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`)
 
     try {
-      const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`, {
+      const response = await axios.post(`${process.env.API_URL}/auth/register`, {
         name,
         username,
         email,

@@ -1,13 +1,12 @@
 import Button from "@/components/button";
 import InputField from "@/components/input";
-import AntDesign from '@expo/vector-icons/AntDesign';
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import axios from "axios";
 import React, { useState } from "react";
-import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Dropdown } from 'react-native-element-dropdown';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 import { Roles } from "../../constant/enum";
 import { RootStackParamList } from "../navigation/types";
 
@@ -44,32 +43,24 @@ const RegisterScreen = () => {
     if (!dob) newErrors.dob = "Date of Birth is required";
     if (!phone.trim()) newErrors.phone = "Phone number is required";
     else if (!/^\d{10,15}$/.test(phone)) newErrors.phone = "Enter a valid phone number (10-15 digits)";
-    if (!role) newErrors.role = "Role is required"; 
+    if (!role) newErrors.role = "Role is required"; // ✅ Role validation
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const roleData = [
-  { label: 'Student', value: Roles.STUDENT },
-  { label: 'Tutor', value: Roles.TUTOR },
-  { label: 'Institutor', value: Roles.INSTITUTOR },
-];
-
   const handleRegister = async () => {
-    console.log("hiiii")
     if (!validateForm()) return;
-    console.log(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`)
 
     try {
-      const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/auth/register`, {
+      const response = await axios.post(`${process.env.API_URL}/auth/register`, {
         name,
         username,
         email,
         password,
         dob: dob?.toISOString().split("T")[0] || "",
         phone,
-        role, 
+        role, // ✅ Include role
       });
 
       console.log("Registration successful:", response.data);
@@ -122,31 +113,24 @@ const RegisterScreen = () => {
               {errors.confirmPassword && <Text className="text-red-500 text-sm">{errors.confirmPassword}</Text>}
 
               {/* Role Dropdown */}
-              <Text className="text-primary mt-6 text-lg mb-1 font-slabBold">Role</Text>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={roleData}
-                search={false} // ✅ No search needed for only 3 items
-                maxHeight={200}
-                labelField="label"
-                valueField="value"
-                placeholder="Select role"
-                value={role}
-                onChange={(item) => {
-                  setRole(item.value);
+              <Text className="mt-4 mb-1 text-gray-700">Role</Text>
+              <RNPickerSelect
+                onValueChange={(value) => setRole(value)}
+                placeholder={{ label: "Select your role", value: null }}
+                items={[
+                  { label: Roles.STUDENT, value: Roles.STUDENT },
+                  { label: Roles.TUTOR, value: Roles.TUTOR },
+                  { label: Roles.INSTITUTOR, value: Roles.INSTITUTOR },
+                ]}
+                style={{
+                  inputIOS: { padding: 12, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, marginBottom: 5 },
+                  inputAndroid: { padding: 12, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, marginBottom: 5 },
                 }}
-                renderLeftIcon={() => (
-                  <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
-                )}
               />
               {errors.role && <Text className="text-red-500 text-sm">{errors.role}</Text>}
 
               {/* DOB */}
-              <Text className="text-primary text-lg  mt-6 mb-1 font-slabBold">Date of Birth</Text>
+              <Text className="mt-4 mb-1 text-gray-700">Date of Birth</Text>
               <Text className="border border-gray-300 rounded-lg p-3 text-gray-600" onPress={() => setShowDatePicker(true)}>
                 {dob ? dob.toDateString() : "Select your date of birth"}
               </Text>
@@ -188,34 +172,3 @@ const RegisterScreen = () => {
 };
 
 export default RegisterScreen;
-
-const styles = StyleSheet.create({
-  dropdown: {
-    height: 50,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 5,
-  },
-  icon: {
-    marginRight: 5,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-    color: '#888',
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
-});
-

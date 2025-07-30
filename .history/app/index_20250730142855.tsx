@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import React from "react";
 import { Text } from "react-native";
@@ -22,7 +23,9 @@ const Index = () => {
   (Text as any).defaultProps.style = { fontFamily: "RobotoSlabRegular" };
 
   return (
+    <NavigationContainer>
       <AppNavigator />
+    </NavigationContainer>
   );
 };
 

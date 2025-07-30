@@ -1,8 +1,6 @@
 import { useFonts } from "expo-font";
-import React from "react";
 import { Text } from "react-native";
 import "../global.css"; // Tailwind CSS (NativeWind)
-import AppNavigator from "./navigation/appNavigator";
 
 const Index = () => {
   const [fontsLoaded] = useFonts({
@@ -21,9 +19,7 @@ const Index = () => {
   (Text as any).defaultProps = (Text as any).defaultProps || {};
   (Text as any).defaultProps.style = { fontFamily: "RobotoSlabRegular" };
 
-  return (
-      <AppNavigator />
-  );
+  return 
 };
 
 export default Index;
