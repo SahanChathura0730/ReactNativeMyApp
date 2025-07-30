@@ -12,11 +12,13 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, '
 const LoginScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
+  // ✅ States for inputs & errors
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
 
+  // ✅ Validation function
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
     if (!usernameOrEmail.trim()) {
@@ -29,6 +31,7 @@ const LoginScreen = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // ✅ API Login function
   const handleLogin = async () => {
     if (!validateForm()) return;
 
@@ -113,7 +116,7 @@ const LoginScreen = () => {
 
               {/* Login Button */}
               <View className="m-8">
-                <Button title="Sign In" onPress={handleLogin} />
+                <Button title={loading ? "Signing In..." : "Sign In"} onPress={handleLogin} disabled={loading} />
               </View>
             </View>
           </View>
