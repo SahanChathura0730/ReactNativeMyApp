@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
-import { RootStackParamList } from "../navigation/types";
+import { RootStackParamList } from "../navigators/types"; // ✅ Import types
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Register'>;
 
@@ -47,7 +47,7 @@ const RegisterScreen = () => {
               {/* ✅ Navigate back to Login */}
               <Text className="text-left mt-4 text-gray-500">
                 Already have an account?{" "}
-                <Text className="text-primary" onPress={() => navigation.goBack()}>
+                <Text className="text-primary" onPress={() => navigation.navigate('Login')}>
                   Login
                 </Text>
               </Text>

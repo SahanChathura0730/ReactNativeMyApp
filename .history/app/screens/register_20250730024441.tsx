@@ -47,7 +47,7 @@ const RegisterScreen = () => {
               {/* ✅ Navigate back to Login */}
               <Text className="text-left mt-4 text-gray-500">
                 Already have an account?{" "}
-                <Text className="text-primary" onPress={() => navigation.goBack()}>
+                <Text className="text-primary" onPress={() => navigation.navigate('Login')}>
                   Login
                 </Text>
               </Text>
